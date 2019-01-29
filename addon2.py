@@ -7,6 +7,7 @@ import urlparse
 base_url = sys.argv[0]
 addon_handle = int(sys.argv[1])
 args = urlparse.parse_qs(sys.argv[2][1:])
+
 xbmcplugin.setContent(addon_handle, 'movies')
 
 def build_url(query):
@@ -14,14 +15,13 @@ def build_url(query):
 
 mode = args.get('mode', None)
 
-
 if mode is None:
-    url = build_url({'mode': 'folder', 'foldername': 'Folder One'})
-    li = xbmcgui.ListItem('Folder One', iconImage='DefaultFolder.png')
+    url = build_url({'mode': 'folder', 'foldername': 'Folder A'})
+    li = xbmcgui.ListItem('Folder A', iconImage='DefaultFolder.png')
     xbmcplugin.addDirectoryItem(handle=addon_handle, url=url,
                                 listitem=li, isFolder=True)
-    url = build_url({'mode': 'folder', 'foldername': 'Folder Two'})
-    li = xbmcgui.ListItem('Folder Two', iconImage='DefaultFolder.png')
+    url = build_url({'mode': 'folder', 'foldername': 'Folder B'})
+    li = xbmcgui.ListItem('Folder B', iconImage='DefaultFolder.png')
     xbmcplugin.addDirectoryItem(handle=addon_handle, url=url,
                                 listitem=li, isFolder=True)
     xbmcplugin.endOfDirectory(addon_handle)
